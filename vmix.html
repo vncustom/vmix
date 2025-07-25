@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vMix Dashboard - Hướng Dẫn Operator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .section-title {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        .tip-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+        .warning-card {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+        }
+        .success-card {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        .step-number {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .container-max {
+            max-width: 1400px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8 mb-0">
+        <div class="container-max mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-full">
+                        <i class="fas fa-video text-3xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-4xl font-bold">vMix Dashboard</h1>
+                        <p class="text-xl opacity-90">Hướng Dẫn Toàn Diện Cho Operator</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="bg-white bg-opacity-20 px-4 py-2 rounded-lg">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        <span class="font-semibold">Live Production Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50 mb-0">
+        <div class="container-max mx-auto px-6">
+            <div class="flex flex-wrap justify-center py-4 space-x-2 space-y-2">
+                <a href="#getting-started" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-play-circle mr-2"></i>Bắt Đầu
+                </a>
+                <a href="#interface" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-desktop mr-2"></i>Giao Diện
+                </a>
+                <a href="#inputs" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-camera mr-2"></i>Input/Output
+                </a>
+                <a href="#overlays" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-layer-group mr-2"></i>Overlays
+                </a>
+                <a href="#transitions" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-magic mr-2"></i>Transitions
+                </a>
+                <a href="#audio" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-volume-up mr-2"></i>Audio
+                </a>
+                <a href="#streaming" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-broadcast-tower mr-2"></i>Streaming
+                </a>
+                <a href="#advanced" class="nav-item px-4 py-2 rounded-lg text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-cogs mr-2"></i>Nâng Cao
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-max mx-auto px-6 py-8">
+        <!-- Getting Started Section -->
+        <section id="getting-started" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-rocket mr-3"></i>Bắt Đầu với vMix
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="feature-card text-white p-6 rounded-xl card-hover">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-download text-2xl mr-3"></i>
+                        <h3 class="text-xl font-bold">Cài Đặt & Khởi Động</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-check mr-2"></i>Download vMix từ trang chủ</li>
+                        <li><i class="fas fa-check mr-2"></i>Cài đặt với quyền Administrator</li>
+                        <li><i class="fas fa-check mr-2"></i>Thêm và kiểm tra license</li>
+                        <li><i class="fas fa-check mr-2"></i>Cấu hình cơ bản cho lần đầu sử dụng</li>
+                    </ul>
+                </div>
+
+                <div class="success-card text-white p-6 rounded-xl card-hover">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-lightbulb text-2xl mr-3"></i>
+                        <h3 class="text-xl font-bold">Khái Niệm Cơ Bản</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-arrow-right mr-2"></i>Preview: Chuẩn bị nguồn</li>
+                        <li><i class="fas fa-arrow-right mr-2"></i>Output: Kết quả cuối cùng</li>
+                        <li><i class="fas fa-arrow-right mr-2"></i>Input: Nguồn video/audio</li>
+                        <li><i class="fas fa-arrow-right mr-2"></i>Overlay: Lớp phủ</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card text-gray-800 p-6 rounded-xl card-hover">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-2xl mr-3"></i>
+                        <h3 class="text-xl font-bold">Mẹo Khởi Đầu</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-bookmark mr-2"></i>Lưu preset đầu tiên</li>
+                        <li><i class="fas fa-bookmark mr-2"></i>Thử nghiệm với sample videos</li>
+                        <li><i class="fas fa-bookmark mr-2"></i>Làm quen với hotkeys</li>
+                        <li><i class="fas fa-bookmark mr-2"></i>Lưu backup thường xuyên</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interface Section -->
+        <section id="interface" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-desktop mr-3"></i>Giao Diện Người Dùng
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+			<!-- Thêm div bọc ngoài để căn giữa và giới hạn chiều rộng hình ảnh -->
+                <div class="flex justify-center mb-8"> 
+                    <img src="images/general.JPG" alt="Giao diện vMix tổng quan" class="w-1/2 h-auto rounded-lg shadow-md">
+                </div>
+                <h3 class="text-2xl font-bold mb-6 text-gray-800">4 Thành Phần Chính của vMix</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border-l-4 border-green-500 pl-6 py-4">
+                        <div class="flex items-center mb-3">
+                            <div class="step-number text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3">1</div>
+                            <h4 class="text-xl font-bold text-green-700">Output Window</h4>
+                        </div>
+                        <p class="text-gray-600 mb-2">Cửa sổ kết quả cuối cùng (Live/Program)</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-chevron-right mr-2 text-green-500"></i>Vị trí: Góc trên bên phải</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-green-500"></i>Thanh title màu xanh lá</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-green-500"></i>Dùng cho Recording và Fullscreen</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-orange-500 pl-6 py-4">
+                        <div class="flex items-center mb-3">
+                            <div class="step-number text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3">2</div>
+                            <h4 class="text-xl font-bold text-orange-700">Preview Window</h4>
+                        </div>
+                        <p class="text-gray-600 mb-2">Cửa sổ chuẩn bị nguồn trước khi phát</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-chevron-right mr-2 text-orange-500"></i>Vị trí: Góc trên bên trái</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-orange-500"></i>Thanh title màu cam</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-orange-500"></i>Swap với Output qua Cut/Fade</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-6 py-4">
+                        <div class="flex items-center mb-3">
+                            <div class="step-number text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3">3</div>
+                            <h4 class="text-xl font-bold text-blue-700">Input bar</h4>
+                        </div>
+                        <p class="text-gray-600 mb-2">Dải nguồn input ở dưới cùng</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-chevron-right mr-2 text-blue-500"></i>Hiển thị tất cả nguồn đã load</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-blue-500"></i>Click 1 lần: Queue to Preview</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-blue-500"></i>Double click: Mở Input Settings</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-purple-500 pl-6 py-4">
+                        <div class="flex items-center mb-3">
+                            <div class="step-number text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3">4</div>
+                            <h4 class="text-xl font-bold text-purple-700">Footer Bar</h4>
+                        </div>
+                        <p class="text-gray-600 mb-2">Hàng cuối cùng</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-chevron-right mr-2 text-purple-500"></i>Thêm input</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-purple-500"></i>Config External Output</li>
+                            <li><i class="fas fa-chevron-right mr-2 text-purple-500"></i>Recording, Stream</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preset Management -->
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-save mr-3"></i>Quản Lý Presets
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-folder-open mr-2"></i>Mở Preset</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• <strong>Open:</strong> Thay thế session hiện tại</li>
+                            <li>• <strong>Append:</strong> Thêm input vào session</li>
+                            <li>• <strong>Last:</strong> Khôi phục preset cuối</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-exclamation-triangle mr-2"></i>File Bị Thiếu</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Hiển thị màu đỏ trong danh sách</li>
+                            <li>• Sử dụng "Locate File" để tìm lại</li>
+                            <li>• Input chuyển sang offline mode</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-archive mr-2"></i>Preset Bundle</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Lưu dạng .vmixZip</li>
+                            <li>• Bao gồm tất cả assets</li>
+                            <li>• Không bao gồm Replay files</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inputs Section -->
+        <section id="inputs" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-camera mr-3"></i>Quản Lý Input & Output
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <!-- Input Types -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                        <i class="fas fa-plus-circle mr-3 text-blue-500"></i>Các Loại Input
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+                            <i class="fas fa-video text-blue-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-blue-800">Camera & Video</h4>
+                                <p class="text-sm text-gray-600">Camera trực tiếp, file video, DVD với Mark In/Out</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg">
+                            <i class="fas fa-broadcast-tower text-green-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-green-800">Stream/SRT</h4>
+                                <p class="text-sm text-gray-600">RTSP, UDP/TCP streams, SRT với mã hóa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg">
+                            <i class="fas fa-image text-yellow-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-yellow-800">Images & Graphics</h4>
+                                <p class="text-sm text-gray-600">Ảnh, thư mục ảnh, PowerPoint, Title, Web Browser</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-purple-50 rounded-lg">
+                            <i class="fas fa-microphone text-purple-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-purple-800">Audio Sources</h4>
+                                <p class="text-sm text-gray-600">Microphone, ASIO/USB, file audio</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-indigo-50 rounded-lg">
+                            <i class="fas fa-cube text-indigo-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-indigo-800">Virtual Set</h4>
+                                <p class="text-sm text-gray-600">Virtual studio với chroma-key, camera angles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 p-3 bg-red-50 rounded-lg">
+                            <i class="fas fa-clock text-red-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-red-800">Video Delay</h4>
+                                <p class="text-sm text-gray-600">Tạo độ trễ cho input để đồng bộ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Settings -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                        <i class="fas fa-cog mr-3 text-gray-600"></i>Input Settings
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <h4 class="font-bold text-blue-700">General</h4>
+                            <p class="text-sm text-gray-600">Source, name, aspect ratio, category, audio mixing</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <h4 class="font-bold text-green-700">Color Adjust</h4>
+                            <p class="text-sm text-gray-600">Brightness, contrast, saturation, hue</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                            <h4 class="font-bold text-yellow-700">Chroma/Luma Key</h4>
+                            <p class="text-sm text-gray-600">Green screen, color key, advanced chroma</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-purple-500 pl-4 py-2">
+                            <h4 class="font-bold text-purple-700">Effects</h4>
+                            <p class="text-sm text-gray-600">Blur, LUT, alpha mask, crop settings</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4 py-2">
+                            <h4 class="font-bold text-red-700">Position</h4>
+                            <p class="text-sm text-gray-600">Zoom, pan, rotate, crop controls</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h4 class="font-bold text-indigo-700">Layers</h4>
+                            <p class="text-sm text-gray-600">Up to 10 layers, borders, layer designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories System -->
+            <div class="bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-tags mr-3"></i>Hệ Thống Categories
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3">Built-in Categories</h4>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-red-500 px-2 py-1 rounded text-xs">Red</span>
+                            <span class="bg-green-500 px-2 py-1 rounded text-xs">Green</span>
+                            <span class="bg-yellow-500 px-2 py-1 rounded text-xs">Orange</span>
+                            <span class="bg-purple-500 px-2 py-1 rounded text-xs">Purple</span>
+                            <span class="bg-blue-400 px-2 py-1 rounded text-xs">Aqua</span>
+                            <span class="bg-blue-500 px-2 py-1 rounded text-xs">Blue</span>
+                        </div>
+                        <p class="text-sm">6 màu cơ bản có sẵn</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3">Custom Categories</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Tối đa 16 categories tùy chỉnh</li>
+                            <li>• Tùy chỉnh label và màu sắc</li>
+                            <li>• Drag & drop để assign</li>
+                            <li>• Quản lý trong Input Settings</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3">Search Category</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Category đặc biệt ở cuối cùng</li>
+                            <li>• Filter inputs theo tên</li>
+                            <li>• Tìm kiếm nhanh trong project lớn</li>
+                            <li>• Gõ để filter realtime</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overlays Section -->
+        <section id="overlays" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-layer-group mr-3"></i>Hệ Thống Overlays
+            </h2>
+            
+            <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-layer-group text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Overlay Cơ Bản</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Tối đa 4 overlays (SD/HD editions)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Fullscreen hoặc Picture-in-Picture</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Hỗ trợ alpha channel</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Color key tự động</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-expand-arrows-alt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Pan & Zoom</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-arrows-alt text-blue-500 mr-2"></i>Di chuyển overlay tự do</li>
+                        <li><i class="fas fa-search-plus text-blue-500 mr-2"></i>Zoom in/out realtime</li>
+                        <li><i class="fas fa-redo text-blue-500 mr-2"></i>Xoay overlay theo góc</li>
+                        <li><i class="fas fa-crop text-blue-500 mr-2"></i>Crop theo tỷ lệ mong muốn</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-border-style text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Custom Borders</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-palette text-purple-500 mr-2"></i>Tùy chỉnh màu viền</li>
+                        <li><i class="fas fa-ruler text-purple-500 mr-2"></i>Độ dày viền linh hoạt</li>
+                        <li><i class="fas fa-circle text-purple-500 mr-2"></i>Bo góc radius</li>
+                        <li><i class="fas fa-magic text-purple-500 mr-2"></i>Hiệu ứng transition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Overlay Controls -->
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-sliders-h mr-3"></i>Điều Khiển Overlays
+                </h3>
+                
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                        <i class="fas fa-1 text-3xl mb-3"></i>
+                        <h4 class="font-bold mb-2">Overlay 1</h4>
+                        <p class="text-sm">Bật/Tắt cho overlay đầu tiên</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                        <i class="fas fa-2 text-3xl mb-3"></i>
+                        <h4 class="font-bold mb-2">Overlay 2</h4>
+                        <p class="text-sm">Bật/Tắt cho overlay thứ hai</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                        <i class="fas fa-3 text-3xl mb-3"></i>
+                        <h4 class="font-bold mb-2">Overlay 3</h4>
+                        <p class="text-sm">Bật/Tắt cho overlay thứ ba</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                        <i class="fas fa-4 text-3xl mb-3"></i>
+                        <h4 class="font-bold mb-2">Overlay 4</h4>
+                        <p class="text-sm">Bật/Tắt cho overlay thứ tư</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-white bg-opacity-20 rounded-lg p-6">
+                    <h4 class="text-xl font-bold mb-4">Mẹo Sử Dụng Overlay Hiệu Quả</h4>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-star mr-2"></i>Sử dụng alpha channel cho transparency tốt nhất</li>
+                            <li><i class="fas fa-star mr-2"></i>Preset transition effects cho mỗi overlay</li>
+                            <li><i class="fas fa-star mr-2"></i>Test overlay trước khi lên sóng</li>
+                        </ul>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-star mr-2"></i>Sắp xếp thứ tự overlay hợp lý</li>
+                            <li><i class="fas fa-star mr-2"></i>Sử dụng shortcut keys cho toggle nhanh</li>
+                            <li><i class="fas fa-star mr-2"></i>Backup settings overlay quan trọng</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transitions Section -->
+        <section id="transitions" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-magic mr-3"></i>Transitions & Effects
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <!-- Transition Types -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                        <i class="fas fa-exchange-alt mr-3 text-blue-500"></i>Các Loại Transition
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800 mb-2">Quick Play</h4>
+                            <p class="text-sm text-gray-600">Preview → Output với fade nửa giây (có thể tùy chỉnh)</p>
+                        </div>
+                        
+                        <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                            <h4 class="font-bold text-green-800 mb-2">Cut</h4>
+                            <p class="text-sm text-gray-600">Chuyển đổi tức thì giữa Preview và Output</p>
+                        </div>
+                        
+                        <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                            <h4 class="font-bold text-yellow-800 mb-2">Fade/Transition</h4>
+                            <p class="text-sm text-gray-600">4 nút transition tùy chỉnh với hiệu ứng và thời gian</p>
+                        </div>
+                        
+                        <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 mb-2">Merge Effect</h4>
+                            <p class="text-sm text-gray-600">Animate matching inputs, fade cho phần khác</p>
+                        </div>
+                        
+                        <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                            <h4 class="font-bold text-red-800 mb-2">Stinger (HD+)</h4>
+                            <p class="text-sm text-gray-600">Custom animated transition với alpha channel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T-Bar & Manual Control -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                        <i class="fas fa-sliders-h mr-3 text-green-500"></i>Fade Bar (T-Bar)
+                    </h3>
+                    
+                    <div class="bg-gray-100 rounded-lg p-6 mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm font-medium text-gray-600">Preview</span>
+                            <span class="text-sm font-medium text-gray-600">Output</span>
+                        </div>
+                        <div class="relative">
+                            <div class="w-full h-8 bg-gradient-to-r from-orange-400 to-green-400 rounded-full"></div>
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-6 h-8 bg-white border-2 border-gray-400 rounded-lg shadow-md"></div>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">Kéo để điều khiển transition thủ công</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Transition 1</span>
+                            <span class="text-sm text-gray-600">Fade - 1.0s</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Transition 2</span>
+                            <span class="text-sm text-gray-600">Wipe Left - 0.5s</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Transition 3</span>
+                            <span class="text-sm text-gray-600">Zoom - 2.0s</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Transition 4</span>
+                            <span class="text-sm text-gray-600">Custom - 1.5s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FTB and Advanced -->
+            <div class="bg-gradient-to-r from-gray-700 to-gray-900 text-white rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-moon mr-3"></i>Fade To Black (FTB) & Advanced
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">FTB Controls</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-check mr-2 text-green-400"></i>Áp dụng cho Recording output</li>
+                            <li><i class="fas fa-check mr-2 text-green-400"></i>Áp dụng cho External Output</li>
+                            <li><i class="fas fa-check mr-2 text-green-400"></i>Áp dụng cho Fullscreen output</li>
+                            <li><i class="fas fa-info-circle mr-2 text-blue-400"></i>KHÔNG ảnh hưởng Output window</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Production Clocks</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-clock mr-2 text-yellow-400"></i>Hiển thị current time</li>
+                            <li><i class="fas fa-stopwatch mr-2 text-yellow-400"></i>Event countdown timer</li>
+                            <li><i class="fas fa-record-vinyl mr-2 text-red-400"></i>Recording duration</li>
+                            <li><i class="fas fa-broadcast-tower mr-2 text-green-400"></i>Streaming duration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-black bg-opacity-30 rounded-lg">
+                    <p class="text-center text-yellow-300">
+                        <i class="fas fa-lightbulb mr-2"></i>
+                        <strong>Pro Tip:</strong> Double-click clocks below T-Bar để access settings (colors, precision, timezone, NDI output)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audio Section -->
+        <section id="audio" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-volume-up mr-3"></i>Hệ Thống Audio
+            </h2>
+            
+            <!-- Audio Mixer Overview -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-sliders-h mr-3 text-blue-500"></i>Audio Mixer
+                </h3>
+                
+                <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                    <div class="border-2 border-blue-200 rounded-lg p-4">
+                        <h4 class="font-bold text-blue-800 mb-3">Master Bus</h4>
+                        <div class="space-y-2">
+                            <div class="bg-blue-100 p-2 rounded text-center">
+                                <i class="fas fa-volume-up text-blue-600"></i>
+                                <div class="text-sm font-medium">Master M</div>
+                            </div>
+                            <p class="text-xs text-gray-600">Output chính cho tất cả audio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-2 border-green-200 rounded-lg p-4">
+                        <h4 class="font-bold text-green-800 mb-3">Aux Buses</h4>
+                        <div class="grid grid-cols-4 gap-1 mb-2">
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">A</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">B</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">C</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">D</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">E</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">F</div>
+                            <div class="bg-green-100 p-1 rounded text-center text-xs">G</div>
+                            <div class="bg-gray-100 p-1 rounded text-center text-xs">H</div>
+                        </div>
+                        <p class="text-xs text-gray-600">7 auxiliary buses</p>
+                    </div>
+                    
+                    <div class="border-2 border-purple-200 rounded-lg p-4">
+                        <h4 class="font-bold text-purple-800 mb-3">Headphones</h4>
+                        <div class="space-y-2">
+                            <div class="bg-purple-100 p-2 rounded text-center">
+                                <i class="fas fa-headphones text-purple-600"></i>
+                                <div class="text-sm font-medium">PFL/AFL</div>
+                            </div>
+                            <p class="text-xs text-gray-600">Pre/Post Fade Listen</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Audio Routing Matrix -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h4 class="text-lg font-bold mb-4 text-gray-800">Audio Routing Matrix (16x16)</h4>
+                    <div class="grid grid-cols-8 gap-2 mb-4">
+                        <div class="text-center text-sm font-medium text-gray-600">Input</div>
+                        <div class="text-center text-sm font-medium text-gray-600">M</div>
+                        <div class="text-center text-sm font-medium text-gray-600">A</div>
+                        <div class="text-center text-sm font-medium text-gray-600">B</div>
+                        <div class="text-center text-sm font-medium text-gray-600">C</div>
+                        <div class="text-center text-sm font-medium text-gray-600">D</div>
+                        <div class="text-center text-sm font-medium text-gray-600">E</div>
+                        <div class="text-center text-sm font-medium text-gray-600">F</div>
+                        
+                        <div class="text-sm text-gray-600">Cam 1</div>
+                        <div class="w-6 h-6 bg-green-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-blue-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        
+                        <div class="text-sm text-gray-600">Mic 1</div>
+                        <div class="w-6 h-6 bg-green-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-green-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        
+                        <div class="text-sm text-gray-600">Music</div>
+                        <div class="w-6 h-6 bg-green-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-green-500 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                        <div class="w-6 h-6 bg-gray-200 rounded mx-auto"></div>
+                    </div>
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Route bất kỳ input nào đến bất kỳ bus nào</p>
+                </div>
+            </div>
+
+            <!-- Audio Processing -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-cogs mr-3 text-green-500"></i>Audio Processing
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <h4 class="font-semibold text-green-800">VST3 Plugins</h4>
+                            <p class="text-sm text-gray-600">Thêm effects chuyên nghiệp cho từng input hoặc bus</p>
+                        </div>
+                        
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">EQ & Compression</h4>
+                            <p class="text-sm text-gray-600">Equalizer và compressor tích hợp</p>
+                        </div>
+                        
+                        <div class="p-3 bg-yellow-50 rounded-lg">
+                            <h4 class="font-semibold text-yellow-800">Noise Gate</h4>
+                            <p class="text-sm text-gray-600">Loại bỏ background noise tự động</p>
+                        </div>
+                        
+                        <div class="p-3 bg-purple-50 rounded-lg">
+                            <h4 class="font-semibold text-purple-800">Channel Mixer</h4>
+                            <p class="text-sm text-gray-600">Điều chỉnh volume từng channel riêng biệt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-tachometer-alt mr-3 text-red-500"></i>Audio Meters
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-16 text-sm text-gray-600">Master</div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-4 relative">
+                                <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-4 rounded-full" style="width: 75%;"></div>
+                                <div class="absolute top-0 right-2 text-xs text-white font-bold leading-4">-6dB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-16 text-sm text-gray-600">Bus A</div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-4 relative">
+                                <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-4 rounded-full" style="width: 45%;"></div>
+                                <div class="absolute top-0 right-2 text-xs text-white font-bold leading-4">-12dB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-16 text-sm text-gray-600">Bus B</div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-4 relative">
+                                <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-4 rounded-full" style="width: 60%;"></div>
+                                <div class="absolute top-0 right-2 text-xs text-white font-bold leading-4">-9dB</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3">
+                            <div class="w-16 text-sm text-gray-600">Phones</div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-4 relative">
+                                <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-4 rounded-full" style="width: 80%;"></div>
+                                <div class="absolute top-0 right-2 text-xs text-white font-bold leading-4">-3dB</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">Thang đo dBFS</h4>
+                        <div class="flex justify-between text-xs text-gray-600">
+                            <span class="text-green-600">-20dB</span>
+                            <span class="text-yellow-600">-12dB</span>
+                            <span class="text-orange-600">-6dB</span>
+                            <span class="text-red-600">0dB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Audio Features -->
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-magic mr-3"></i>Tính Năng Audio Nâng Cao
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">External Mixer Integration</h4>
+                        <ul class="space-y-2 text-gray-200">
+                            <li><i class="fas fa-exchange-alt mr-2 text-green-400"></i>Two-way routing với vMix</li>
+                            <li><i class="fas fa-route mr-2 text-green-400"></i>Bus selection linh hoạt</li>
+                            <li><i class="fas fa-clock mr-2 text-green-400"></i>Negative delay cho sync</li>
+                            <li><i class="fas fa-plug mr-2 text-green-400"></i>Hỗ trợ ASIO/USB interfaces</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Recording Audio</h4>
+                        <ul class="space-y-2 text-gray-200">
+                            <li><i class="fas fa-microphone mr-2 text-yellow-400"></i>Basic: qua vMix mixer</li>
+                            <li><i class="fas fa-usb mr-2 text-yellow-400"></i>USB interface direct</li>
+                            <li><i class="fas fa-cogs mr-2 text-yellow-400"></i>Advanced: External mixer</li>
+                            <li><i class="fas fa-headphones mr-2 text-yellow-400"></i>8 stereo bus outputs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-black bg-opacity-30 rounded-lg">
+                    <p class="text-center text-cyan-300">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <strong>Lưu ý:</strong> Enable additional buses trong Settings > Audio Outputs để mở rộng khả năng routing
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Streaming Section -->
+        <section id="streaming" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-broadcast-tower mr-3"></i>Live Streaming & Output
+            </h2>
+            
+            <!-- Streaming Overview -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-stream mr-3 text-red-500"></i>Streaming Configuration
+                </h3>
+                
+                <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                    <div class="border-2 border-red-200 rounded-lg p-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-play text-3xl text-red-600"></i>
+                        </div>
+                        <h4 class="font-bold text-red-800 text-center mb-3">Stream 1</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Platform:</span>
+                                <span class="font-medium">YouTube</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Quality:</span>
+                                <span class="font-medium">1080p30</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Bitrate:</span>
+                                <span class="font-medium">6000 kbps</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Status:</span>
+                                <span class="text-green-600 font-medium">Connected</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-2 border-blue-200 rounded-lg p-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-play text-3xl text-blue-600"></i>
+                        </div>
+                        <h4 class="font-bold text-blue-800 text-center mb-3">Stream 2</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Platform:</span>
+                                <span class="font-medium">Facebook</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Quality:</span>
+                                <span class="font-medium">720p30</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Bitrate:</span>
+                                <span class="font-medium">4000 kbps</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Status:</span>
+                                <span class="text-yellow-600 font-medium">Standby</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-2 border-green-200 rounded-lg p-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-play text-3xl text-green-600"></i>
+                        </div>
+                        <h4 class="font-bold text-green-800 text-center mb-3">Stream 3</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Platform:</span>
+                                <span class="font-medium">Custom RTMP</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Quality:</span>
+                                <span class="font-medium">1080p60</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Bitrate:</span>
+                                <span class="font-medium">8000 kbps</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Status:</span>
+                                <span class="text-gray-600 font-medium">Offline</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <h4 class="text-lg font-bold text-blue-800 mb-3">Supported Platforms</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-youtube text-red-500 text-xl"></i>
+                            <span>YouTube Live</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-facebook text-blue-500 text-xl"></i>
+                            <span>Facebook Live</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-twitch text-purple-500 text-xl"></i>
+                            <span>Twitch</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-server text-gray-500 text-xl"></i>
+                            <span>Custom RTMP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quality Settings -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-cog mr-3 text-blue-500"></i>Quality Settings
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Video Codec</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>H264</option>
+                                <option>H265 (HEVC)</option>
+                                <option>AV1</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Resolution</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>1920x1080</option>
+                                <option>1280x720</option>
+                                <option>1920x1080 (60fps)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Bitrate</span>
+                            <input type="range" min="1000" max="15000" value="6000" class="flex-1 mx-3">
+                            <span class="w-20 text-right">6000 kbps</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Encoder</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>Software (x264)</option>
+                                <option>NVIDIA NVENC</option>
+                                <option>Intel Quick Sync</option>
+                                <option>AMD AMF</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Keyframe</span>
+                            <input type="number" value="2" class="bg-white border rounded px-3 py-1 w-20">
+                            <span class="text-sm text-gray-600">seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-volume-up mr-3 text-green-500"></i>Audio Settings
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Audio Codec</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>AAC</option>
+                                <option>MP3</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Sample Rate</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>48 kHz</option>
+                                <option>44.1 kHz</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Audio Bitrate</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>128 kbps</option>
+                                <option>192 kbps</option>
+                                <option>256 kbps</option>
+                                <option>320 kbps</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Channels</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>Stereo</option>
+                                <option>Mono</option>
+                                <option>5.1</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <span class="font-medium">Audio Source</span>
+                            <select class="bg-white border rounded px-3 py-1">
+                                <option>Master</option>
+                                <option>Bus A</option>
+                                <option>Bus B</option>
+                                <option>Bus C</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SRT & External Output -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-shield-alt mr-3"></i>SRT Streaming
+                    </h3>
+                    
+                    <div class="space-y-3 mb-4">
+                        <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                            <h4 class="font-semibold mb-2">Connection Modes</h4>
+                            <ul class="text-sm space-y-1">
+                                <li><i class="fas fa-dot-circle mr-2"></i>Caller - Kết nối chủ động</li>
+                                <li><i class="fas fa-dot-circle mr-2"></i>Listener - Lắng nghe kết nối</li>
+                                <li><i class="fas fa-dot-circle mr-2"></i>Rendezvous - Kết nối peer-to-peer</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                            <h4 class="font-semibold mb-2">Security</h4>
+                            <ul class="text-sm space-y-1">
+                                <li><i class="fas fa-key mr-2"></i>AES Encryption</li>
+                                <li><i class="fas fa-lock mr-2"></i>Passphrase protection</li>
+                                <li><i class="fas fa-certificate mr-2"></i>Key length options</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black bg-opacity-30 rounded-lg p-3">
+                        <p class="text-sm text-center">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Ultra-reliable transport với latency thấp
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-600 to-teal-600 text-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-tv mr-3"></i>External Output
+                    </h3>
+                    
+                    <div class="space-y-3 mb-4">
+                        <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                            <h4 class="font-semibold mb-2">Hardware Support</h4>
+                            <ul class="text-sm space-y-1">
+                                <li><i class="fas fa-microchip mr-2"></i>AJA Cards</li>
+                                <li><i class="fas fa-microchip mr-2"></i>Blackmagic Design</li>
+                                <li><i class="fas fa-microchip mr-2"></i>Bluefish444</li>
+                                <li><i class="fas fa-network-wired mr-2"></i>NDI Output</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                            <h4 class="font-semibold mb-2">Output Options</h4>
+                            <ul class="text-sm space-y-1">
+                                <li><i class="fas fa-video mr-2"></i>SDI/HDMI Output</li>
+                                <li><i class="fas fa-plus mr-2"></i>Key + Fill Output</li>
+                                <li><i class="fas fa-desktop mr-2"></i>vMix Video (Virtual)</li>
+                                <li><i class="fas fa-cogs mr-2"></i>Up to 4 Outputs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black bg-opacity-30 rounded-lg p-3">
+                        <p class="text-sm text-center">
+                            <i class="fas fa-broadcast-tower mr-2"></i>
+                            Professional broadcast output
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LiveLAN -->
+            <div class="bg-gradient-to-r from-yellow-500 to-purple-600 text-white rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-wifi mr-3"></i>LiveLAN - Intranet Streaming
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-globe mr-2"></i>HLS Streaming</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• HTML5 compatible</li>
+                            <li>• ~10 second latency</li>
+                            <li>• Works in web browsers</li>
+                            <li>• Mobile device support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-network-wired mr-2"></i>Network Setup</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Local network only</li>
+                            <li>• Bandwidth consideration</li>
+                            <li>• Router configuration</li>
+                            <li>• Firewall settings</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-shield-alt mr-2"></i>Security</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Password protection</li>
+                            <li>• IP address filtering</li>
+                            <li>• HTTPS encryption</li>
+                            <li>• Access control</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-black bg-opacity-30 rounded-lg">
+                    <p class="text-center">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <strong>Use Case:</strong> Internal company streaming, training sessions, multi-location viewing
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Section -->
+        <section id="advanced" class="mb-12">
+            <h2 class="text-4xl font-bold section-title mb-8 text-center">
+                <i class="fas fa-cogs mr-3"></i>Tính Năng Nâng Cao
+            </h2>
+            
+            <!-- Data Sources -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                    <i class="fas fa-database mr-3 text-blue-500"></i>Data Sources
+                </h3>
+                
+                <div class="grid lg:grid-cols-2 gap-8 mb-6">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-gray-800">Supported Formats</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex items-center space-x-2 p-2 bg-green-50 rounded">
+                                <i class="fas fa-file-excel text-green-600"></i>
+                                <span class="text-sm">Excel (XLSX/XLS)</span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded">
+                                <i class="fab fa-google text-blue-600"></i>
+                                <span class="text-sm">Google Sheets</span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 bg-orange-50 rounded">
+                                <i class="fas fa-file-csv text-orange-600"></i>
+                                <span class="text-sm">CSV Files</span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 bg-purple-50 rounded">
+                                <i class="fas fa-rss text-purple-600"></i>
+                                <span class="text-sm">RSS Feeds</span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 bg-red-50 rounded">
+                                <i class="fas fa-code text-red-600"></i>
+                                <span class="text-sm">XML/XPath</span>
+                            </div>
+                            <div class="flex items-center space-x-2 p-2 bg-yellow-50 rounded">
+                                <i class="fas fa-file-alt text-yellow-600"></i>
+                                <span class="text-sm">JSON Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-gray-800">Data Control</h4>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <h5 class="font-semibold text-gray-700">Manual Selection</h5>
+                                <p class="text-sm text-gray-600">Chọn row thủ công từ data source</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <h5 class="font-semibold text-gray-700">Auto Next</h5>
+                                <p class="text-sm text-gray-600">Tự động chuyển row theo timer</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <h5 class="font-semibold text-gray-700">Loop Mode</h5>
+                                <p class="text-sm text-gray-600">Lặp lại khi đến cuối data</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <h5 class="font-semibold text-gray-700">Shortcut Control</h5>
+                                <p class="text-sm text-gray-600">DataSourceNextRow hotkeys</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <h4 class="text-lg font-bold text-blue-800 mb-3">Google Sheets Integration</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-blue-700 mb-2">Setup Steps</h5>
+                            <ol class="text-sm space-y-1 list-decimal list-inside text-gray-700">
+                                <li>Create Google Sheets document</li>
+                                <li>Enable Google Sheets API</li>
+                                <li>Generate API key</li>
+                                <li>Share sheet publicly or with API</li>
+                                <li>Configure in vMix Data Sources</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-blue-700 mb-2">Live Updates</h5>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li><i class="fas fa-sync mr-2 text-blue-500"></i>Real-time data sync</li>
+                                <li><i class="fas fa-edit mr-2 text-blue-500"></i>Edit from any device</li>
+                                <li><i class="fas fa-users mr-2 text-blue-500"></i>Multi-user collaboration</li>
+                                <li><i class="fas fa-clock mr-2 text-blue-500"></i>Automatic refresh</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GT Title Designer -->
+            <div class="bg-gradient-to-r from-pink-500 to-yellow-500 text-white rounded-xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-paint-brush mr-3"></i>GT Title Designer
+                </h3>
+                
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-rocket mr-2"></i>GPU Accelerated</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Hardware acceleration</li>
+                            <li>• 4K/Pro editions support</li>
+                            <li>• Smooth animations</li>
+                            <li>• Real-time preview</li>
+                            <li>• Alpha channel support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-magic mr-2"></i>Animation Control</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Transition In/Out effects</li>
+                            <li>• Custom timing control</li>
+                            <li>• Layer-based animation</li>
+                            <li>• Keyframe editing</li>
+                            <li>• Easing functions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-text-height mr-2"></i>Typography</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Custom fonts support</li>
+                            <li>• Text formatting</li>
+                            <li>• Gradient/shadow effects</li>
+                            <li>• Live text updates</li>
+                            <li>• Multi-language support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 grid md:grid-cols-2 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3">Template Usage</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><i class="fas fa-check mr-2"></i>All editions: Included templates</li>
+                            <li><i class="fas fa-check mr-2"></i>HD/4K/Pro: Custom template creation</li>
+                            <li><i class="fas fa-check mr-2"></i>Load as input sources</li>
+                            <li><i class="fas fa-check mr-2"></i>Edit text, images, colors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3">Ticker Control</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><i class="fas fa-arrows-alt-h mr-2"></i>Customizable speed</li>
+                            <li><i class="fas fa-exchange-alt mr-2"></i>Direction control</li>
+                            <li><i class="fas fa-repeat mr-2"></i>Loop settings</li>
+                            <li><i class="fas fa-pause mr-2"></i>Pause on hover</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation & Scripting -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-robot mr-3 text-purple-500"></i>Automation & Triggers
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 bg-purple-50 rounded-lg">
+                            <h4 class="font-semibold text-purple-800">OnTransitionIn/Out</h4>
+                            <p class="text-sm text-gray-600">Trigger khi input chuyển vào/ra từ Preview/Output</p>
+                        </div>
+                        
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">OnOverlayIn/Out</h4>
+                            <p class="text-sm text-gray-600">Trigger khi overlay được bật/tắt</p>
+                        </div>
+                        
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <h4 class="font-semibold text-green-800">OnCompletion</h4>
+                            <p class="text-sm text-gray-600">Trigger khi video/audio hoàn thành phát</p>
+                        </div>
+                        
+                        <div class="p-3 bg-yellow-50 rounded-lg">
+                            <h4 class="font-semibold text-yellow-800">OnCountdownCompleted</h4>
+                            <p class="text-sm text-gray-600">Trigger khi countdown timer về 0</p>
+                        </div>
+                        
+                        <div class="p-3 bg-red-50 rounded-lg">
+                            <h4 class="font-semibold text-red-800">OnVideoCallConnected</h4>
+                            <p class="text-sm text-gray-600">Trigger khi video call được kết nối</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center">
+                        <i class="fas fa-keyboard mr-3 text-green-500"></i>Shortcuts & Scripts
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold text-gray-800">Keyboard Shortcuts</h4>
+                            <div class="mt-2 space-y-1 text-sm text-gray-600">
+                                <div class="flex justify-between">
+                                    <span>Cut:</span>
+                                    <kbd class="bg-gray-200 px-2 py-1 rounded">Enter</kbd>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Quick Play:</span>
+                                    <kbd class="bg-gray-200 px-2 py-1 rounded">Space</kbd>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Overlay 1:</span>
+                                    <kbd class="bg-gray-200 px-2 py-1 rounded">1</kbd>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>FTB:</span>
+                                    <kbd class="bg-gray-200 px-2 py-1 rounded">B</kbd>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold text-gray-800">Script Functions</h4>
+                            <ul class="mt-2 space-y-1 text-sm text-gray-600">
+                                <li><code>Cut</code> - Instant transition</li>
+                                <li><code>Fade,1000</code> - Fade over 1 second</li>
+                                <li><code>SetText</code> - Update title text</li>
+                                <li><code>OverlayInput1On</code> - Turn on overlay</li>
+                                <li><code>StartRecording</code> - Begin recording</li>
+                                <li><code>StartStreaming</code> - Start stream</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold text-gray-800">External Control</h4>
+                            <ul class="mt-2 space-y-1 text-sm text-gray-600">
+                                <li><i class="fas fa-gamepad mr-2"></i>Stream Deck integration</li>
+                                <li><i class="fas fa-mobile-alt mr-2"></i>Mobile app control</li>
+                                <li><i class="fas fa-globe mr-2"></i>Web browser interface</li>
+                                <li><i class="fas fa-plug mr-2"></i>TCP/HTTP API</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NDI & Network -->
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-network-wired mr-3"></i>NDI & Network Integration
+                </h3>
+                
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-input mr-2"></i>NDI Input</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Auto-discover NDI sources</li>
+                            <li>• Full/Preview quality modes</li>
+                            <li>• Audio embedded</li>
+                            <li>• Low latency streaming</li>
+                            <li>• Multi-camera workflows</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-output mr-2"></i>NDI Output</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Send vMix output via NDI</li>
+                            <li>• Multiple output modes</li>
+                            <li>• Preview/Program/Multiview</li>
+                            <li>• Individual input outputs</li>
+                            <li>• Audio channels included</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <h4 class="font-bold mb-3"><i class="fas fa-tally mr-2"></i>Tally System</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• NDI Tally support</li>
+                            <li>• Preview/Program indicators</li>
+                            <li>• Camera operator feedback</li>
+                            <li>• Custom tally configurations</li>
+                            <li>• Third-party tally systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-white bg-opacity-20 rounded-lg p-6">
+                    <h4 class="text-xl font-bold mb-4">Network Performance Tips</h4>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-wifi mr-2"></i>Sử dụng Gigabit Ethernet cho NDI</li>
+                            <li><i class="fas fa-network-wired mr-2"></i>Dedicated network cho production traffic</li>
+                            <li><i class="fas fa-server mr-2"></i>Managed switches với QoS support</li>
+                        </ul>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-chart-line mr-2"></i>Monitor network bandwidth usage</li>
+                            <li><i class="fas fa-shield-alt mr-2"></i>Firewall rules cho NDI ports</li>
+                            <li><i class="fas fa-clock mr-2"></i>Consider latency trong multi-cam setup</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance & Hardware -->
+            <div class="bg-gray-800 text-white rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-tachometer-alt mr-3"></i>Performance & Hardware
+                </h3>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 text-yellow-400">System Requirements</h4>
+                        <div class="space-y-3">
+                            <div class="bg-gray-700 rounded-lg p-3">
+                                <h5 class="font-semibold text-green-400">Minimum (HD)</h5>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Intel i5 4th gen / AMD equivalent</li>
+                                    <li>• 8GB RAM</li>
+                                    <li>• DirectX 11 graphics</li>
+                                    <li>• Windows 10/11</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-700 rounded-lg p-3">
+                                <h5 class="font-semibold text-blue-400">Recommended (4K)</h5>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• Intel i7 8th gen / AMD Ryzen 7</li>
+                                    <li>• 16GB+ RAM</li>
+                                    <li>• NVIDIA GTX 1060 / AMD RX 580</li>
+                                    <li>• SSD storage</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 text-yellow-400">Optimization Tips</h4>
+                        <div class="space-y-3">
+                            <div class="bg-gray-700 rounded-lg p-3">
+                                <h5 class="font-semibold text-orange-400">Hardware Encoding</h5>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• NVIDIA NVENC</li>
+                                    <li>• Intel Quick Sync</li>
+                                    <li>• AMD VCE/AMF</li>
+                                    <li>• Dedicated encoding cards</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-700 rounded-lg p-3">
+                                <h5 class="font-semibold text-purple-400">Performance Settings</h5>
+                                <ul class="text-sm mt-2 space-y-1">
+                                    <li>• GPU acceleration enable</li>
+                                    <li>• Optimize preview quality</li>
+                                    <li>• Memory management</li>
+                                    <li>• Background processing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-yellow-600 bg-opacity-20 border border-yellow-600 rounded-lg p-4">
+                    <p class="text-center text-yellow-300">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>Pro Tip:</strong> Sử dụng dedicated graphics card cho vMix, integrated graphics cho system UI để tối ưu performance
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 bg-gray-800 text-white rounded-xl p-8 text-center">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-blue-400">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#getting-started" class="hover:text-blue-400 transition-colors">Bắt Đầu</a></li>
+                        <li><a href="#interface" class="hover:text-blue-400 transition-colors">Giao Diện</a></li>
+                        <li><a href="#streaming" class="hover:text-blue-400 transition-colors">Streaming</a></li>
+                        <li><a href="#advanced" class="hover:text-blue-400 transition-colors">Nâng Cao</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-green-400">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>vMix Official Website</li>
+                        <li>Community Forums</li>
+                        <li>Video Tutorials</li>
+                        <li>Knowledge Base</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-purple-400">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Technical Support</li>
+                        <li>License Information</li>
+                        <li>Hardware Compatibility</li>
+                        <li>Feature Requests</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6">
+                <p class="text-gray-400">
+                    vMix Dashboard - Created by LH
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to navigation items based on scroll position
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section[id]').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('bg-blue-100');
+                if (a.getAttribute('href') === '#' + current) {
+                    a.classList.add('bg-blue-100');
+                }
+            });
+        });
+
+        // Interactive elements
+        document.querySelectorAll('input[type="range"]').forEach(range => {
+            range.addEventListener('input', function() {
+                const value = this.value;
+                const output = this.nextElementSibling;
+                if (output) {
+                    output.textContent = value + ' kbps';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
